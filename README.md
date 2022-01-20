@@ -1,5 +1,13 @@
+# Shopify Summer 2022 Backend Developer Submission
+This is built using MongoDB, React, Express, and Node.js. Express was used to build server.js and to create the API that consists of the following features:
+- Create an item
+- Delete an item
+- View all items
+- Update an item
+- Export as CSV file
+
 ## Deployed Link
-https://habituall.herokuapp.com/login
+https://inventory-tracker-shopify.herokuapp.com/; if deployed link is not working, feel free to clone the repo and run the project locally.
 
 Install react and npm on your device, next.
 
