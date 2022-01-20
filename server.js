@@ -33,18 +33,10 @@ connection.once('open', () => {
 })
 
 app.get("/items",  async (req, res) => {
-    // Inventory.find((error, inventorys) => {
-    //     if (error) {
-    //         res.status(400).json({
-    //             error: error
-    //         });
-    //     } else {
-    //         res.status(200).json(inventorys);
-    //     }
-    // })
+ 
     try {
-		const inventorys = await Inventory.find()
-		res.status(200).json(inventorys);
+		const inventory = await Inventory.find()
+		res.status(200).json(inventory);
 
 	} catch(error){
 		log(error) // log server error to the console, not to the client.
@@ -57,13 +49,12 @@ app.get("/items",  async (req, res) => {
 })
 
 app.get("/download", (req, res) => {
-    Inventory.find((error, inventorys) => {
+    Inventory.find((error, inventory) => {
         if (error) {
             res.status(400).json({
                 error: error
             });
         } else {
-            console.log(inventorys);
 
             var {Parser} = require('json2csv');
             const fields = [
@@ -80,13 +71,17 @@ app.get("/download", (req, res) => {
                     value: 'amount'
                 },
                 {
-                    label: 'location',
-                    value: 'location'
+                    label: 'color',
+                    value: 'color'
+                },
+                {
+                    label: 'vendor',
+                    value: 'vendor'
                 }
             ]
             const json2csv = new Parser({fields: fields})
-            const csv = json2csv.parse(inventorys)
-            res.attachment('inventorys.csv')
+            const csv = json2csv.parse(inventory)
+            res.attachment('inventory.csv')
             res.download('')
             res.status(200).send(csv);
         }
@@ -100,16 +95,6 @@ app.post("/add", async (req, res) => {
         color: req.body.color,
         vendor: req.body.vendor,
     });
-    // inventory
-    //     .save()
-    //     .then((inventory) => {
-    //         res.status(200).json(inventory);
-    //     })
-    //     .catch((error) => {
-    //         res.status(400).json({
-    //             error: error
-    //         });
-    //     })
     try {
 		const result = await inventory.save()	
 		res.status(200).json(result);
@@ -127,7 +112,8 @@ app.post("/add", async (req, res) => {
 app.patch("/:id", (req, res) => {
     console.log('This is console id' + req.params.id)
     const id = req.params.id
-    Inventory.findByIdAndUpdate(id, { product: req.body.product,  amount: req.body.amount }, { amount: req.body.amount })
+    Inventory.findByIdAndUpdate(id, { product: req.body.product,  amount: req.body.amount, color: req.body.color,
+    vendor: req.body.vendor})
     // Inventory.updateOne({ product: req.params.product }, { amount: req.body.amount })
         .then(() => {
             res.status(200).json({

@@ -46,6 +46,8 @@ class Inventory extends Component {
             amountUpdate: '',
             vendor: '',
             vendorUpdate: '',
+            color: '',
+            colorUpdate: '',
             inventory: [],
             data: []
         }
@@ -68,11 +70,9 @@ class Inventory extends Component {
 
     onChange = (e) => {
         this.setState({ [e.target.name]: e.target.value });
-        console.log(e.target.value);
     }
     onChange2 = (e) => {
       this.setState({ [e.target.name]: e.target.value });
-      console.log(e.target.value);
   }
     onDropdownSelected = (e) => {
       console.log("THE VAL", e.target.value);
@@ -88,8 +88,12 @@ class Inventory extends Component {
             color: this.state.color,
             vendor: this.state.vendor
         }
-
-        console.log(inventory)
+        const inventoryUpdate = {
+          product: this.state.productUpdate,
+          amount: this.state.amountUpdate,
+          color: this.state.colorUpdate,
+          vendor: this.state.vendorUpdate
+      }
 
         if (e.nativeEvent.submitter.name === "add") {
           axios.post("/add", inventory)
@@ -110,7 +114,25 @@ class Inventory extends Component {
         axios.get("/items")
         .then(res => this.setState({inventory: res.data}))
     }
+    onSubmit2(e) {
 
+      const inventoryUpdate = {
+          product: this.state.productUpdate,
+          amount: this.state.amountUpdate,
+          color: this.state.colorUpdate,
+          vendor: this.state.vendorUpdate
+      }
+
+      console.log(inventoryUpdate)
+
+      
+
+      if (e.nativeEvent.submitter.name === "update") {
+        console.log('from frontend' + this.state.id)
+        axios.patch("/"+this.state.id, inventoryUpdate)
+          .then(res => console.log(res.data));
+      }
+    }
 
     render() {
         const { classes } = this.props
@@ -231,8 +253,8 @@ class Inventory extends Component {
                         fullWidth
                         id="product_change"
                         label="Product"
-                        name="productUpdate"
-                        value={this.state.productUpdate}
+                        name="product"
+                        value={this.state.product}
                         onChange={this.onChange}
                       />
                     </Grid>
