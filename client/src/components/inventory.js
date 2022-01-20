@@ -55,12 +55,12 @@ class Inventory extends Component {
     }
 
     componentDidMount() {
-      axios.get("http://localhost:5000")
+      axios.get("/")
         .then(res => this.setState({inventory: res.data}))
     }
 
     getTransactionData = async () => {
-      await axios.get("http://localhost:5000/download")
+      await axios.get("/download")
         .then(res => this.setState({data: res.data}))
         .catch((e) => console.log(e))
       this.csvLink.current.link.click()
@@ -92,22 +92,22 @@ class Inventory extends Component {
         console.log(inventory)
 
         if (e.nativeEvent.submitter.name === "add") {
-          axios.post("http://localhost:5000/add", inventory)
+          axios.post("/add", inventory)
             .then(res => console.log(res.data));
         }
 
         if (e.nativeEvent.submitter.name === "update") {
           console.log('from frontend' + this.state.id)
-          axios.patch("http://localhost:5000/"+this.state.id, inventory)
+          axios.patch("/"+this.state.id, inventory)
             .then(res => console.log(res.data));
         }
 
         if (e.nativeEvent.submitter.name === "delete"){
-          axios.delete("http://localhost:5000/"+this.state.idDelete, inventory)
+          axios.delete("/"+this.state.idDelete, inventory)
             .then(res => console.log(res.data));
         }
 
-        axios.get("http://localhost:5000")
+        axios.get("/")
         .then(res => this.setState({inventory: res.data}))
     }
 
