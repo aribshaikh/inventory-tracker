@@ -32,7 +32,7 @@ connection.once('open', () => {
     console.log("MongoDB database connection established")
 })
 
-app.get("/",  async (req, res) => {
+app.get("/items",  async (req, res) => {
     // Inventory.find((error, inventorys) => {
     //     if (error) {
     //         res.status(400).json({
