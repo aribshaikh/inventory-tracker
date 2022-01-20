@@ -10,9 +10,7 @@
     "build-run": "cd client && npm run build && cd .. && node server.js",
     "heroku-postbuild": "cd client && npm install && npm run build"
   },
-  "engines": {
-    "node": "10.16.0"
-  },
+  
   "keywords": [],
   "author": "",
   "license": "ISC",
