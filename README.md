@@ -1,4 +1,4 @@
-# Shopify Summer 2022 Backend Developer Submission
+# Challenge Submission
 This is built using MongoDB, React, Express, and Node.js. Express was used to build server.js and to create the API that consists of the following features:
 - Create an item
 - Delete an item
