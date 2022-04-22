@@ -1,13 +1,15 @@
 # Challenge Submission
-This is built using MongoDB, React, Express, and Node.js. Express was used to build server.js and to create the API that consists of the following features:
+This is built using MongoDB, React, Express, and Node.js. Express was used to build server.js and to create the API that consists of the following features (CRUD):
 - Create an item
 - Delete an item
 - View all items
 - Update an item
-- Export as CSV file
+
+Additional Feature:
+- Comments for Deletion/Undeletion
 
 ## Deployed Link
-https://inventory-tracker-shopify.herokuapp.com/; if deployed link is not working, feel free to clone the repo and run the project locally.
+if deployed link is not working, feel free to clone the repo and run the project locally.
 
 Install react and npm on your device, next.
 
