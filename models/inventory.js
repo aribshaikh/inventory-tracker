@@ -6,6 +6,7 @@ const inventorySchema = new Schema({
     amount: { type: Number, required: true},
     color: { type: String, required: true},
     vendor: { type: String, required: true},
+    archived: {delete: Boolean, comment: String}
 }, { toJSON: { virtuals: true } });
 
 const Inventory = mongoose.model('Inventory', inventorySchema);
