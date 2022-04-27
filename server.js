@@ -11,7 +11,7 @@ const Inventory = require("./models/inventory");
 
 require('dotenv').config();
 
-const port = process.env.port || 5000;
+const PORT = process.env.port || 5000;
 const path = require('path');
 const { equal } = require('assert');
 
@@ -221,6 +221,6 @@ app.use(express.static(__dirname + "/client/build"));
 app.get("*", (req, res) => {
   res.sendFile(__dirname + "/client/build/index.html");
 });
-app.listen(port, () => {
+app.listen(PORT, () => {
     console.log(`Server is running on port: ${port}`);
 })
