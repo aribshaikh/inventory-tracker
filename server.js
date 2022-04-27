@@ -34,15 +34,7 @@ connection.once('open', () => {
 })
 
 app.get("/items",  async (req, res) => {
-    // Inventory.find((error, inventorys) => {
-    //     if (error) {
-    //         res.status(400).json({
-    //             error: error
-    //         });
-    //     } else {
-    //         res.status(200).json(inventorys);
-    //     }
-    // })
+    
     try {
 		const inventory = await Inventory.find({'archived.delete': false})
 		res.status(200).json(inventory);
@@ -76,10 +68,10 @@ app.get("/archived",  async (req, res) => {
 
 app.post("/add", async (req, res) => {
 
-    if(isNaN(req.body.amount)) {
-      console.log('Invalid input for amount, cannot complete request')
+    if(isNaN(req.body.amount) || req.body.product == "" || req.body.color == "" || req.body.vendor == "") {
+      console.log('Invalid/missing input')
     }
-    else{ 
+    else { 
     const inventory = new Inventory({
         product: req.body.product,
         amount: Number(req.body.amount),
@@ -90,16 +82,6 @@ app.post("/add", async (req, res) => {
             comment: ""
           },
     });
-    // inventory
-    //     .save()
-    //     .then((inventory) => {
-    //         res.status(200).json(inventory);
-    //     })
-    //     .catch((error) => {
-    //         res.status(400).json({
-    //             error: error
-    //         });
-    //     })
     try {
 		const result = await inventory.save()	
 		res.status(200).json(result);

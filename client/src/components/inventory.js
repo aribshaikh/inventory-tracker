@@ -194,6 +194,7 @@ class Inventory extends Component {
                         autoFocus
                         value={this.state.product}
                         onChange={this.onChange}
+                        required
                       />
                     </Grid>
                     <Grid item xs={12}>
@@ -205,6 +206,7 @@ class Inventory extends Component {
                         name="amount"
                         value={this.state.amount}
                         onChange={this.onChange}
+                        required
                       />
                     </Grid>
                     <Grid item xs={12}>
@@ -216,6 +218,7 @@ class Inventory extends Component {
                         id="color"
                         value={this.state.color}
                         onChange={this.onChange}
+                        required
                       />
                     </Grid>
                     <Grid item xs={12}>
@@ -228,6 +231,7 @@ class Inventory extends Component {
                         id="vendor"
                         value={this.state.vendor}
                         onChange={this.onChange}
+                        required
                       />
                     </Grid>
                   </Grid>
@@ -270,7 +274,7 @@ class Inventory extends Component {
                         name="productUpdate"
                         value={this.state.productUpdate}
                         onChange={this.onChange}
-                        required
+                        
                       />
                     </Grid>
                     <Grid item xs={12}>
@@ -282,7 +286,7 @@ class Inventory extends Component {
                         name="amountUpdate"
                         value={this.state.amountUpdate}
                         onChange={this.onChange}
-                        required
+                        
                       />
                     </Grid>
                     <Grid item xs={12}>
@@ -294,7 +298,7 @@ class Inventory extends Component {
                         id="color"
                         value={this.state.colorUpdate}
                         onChange={this.onChange}
-                        required
+                        
                       />
                     </Grid>
                     <Grid item xs={12}>
@@ -307,7 +311,7 @@ class Inventory extends Component {
                         id="vendor"
                         value={this.state.vendorUpdate}
                         onChange={this.onChange}
-                        required
+                        
                       />
                     </Grid>
                   </Grid>
