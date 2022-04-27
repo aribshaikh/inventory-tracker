@@ -69,9 +69,9 @@ class Inventory extends Component {
     }
     // Regular inventory
     componentDidMount() {
-      axios.get("http://localhost:5000")
+      axios.get("/")
         .then(res => this.setState({inventory: res.data}))
-        axios.get("http://localhost:5000/archived")
+        axios.get("/archived")
         .then(res => this.setState({archivedInventory: res.data}))
     }
 
@@ -112,33 +112,33 @@ class Inventory extends Component {
         console.log(inventory)
 
         if (e.nativeEvent.submitter.name === "add") {
-          axios.post("http://localhost:5000/add", inventory)
+          axios.post("/add", inventory)
             .then(res => console.log(res.data));
         }
 
         if (e.nativeEvent.submitter.name === "update") {
           console.log(e.nativeEvent.submitter.name)
           console.log('from frontend' + this.state.id)
-          axios.patch("http://localhost:5000/"+this.state.id, updateInventory)
+          axios.patch("/"+this.state.id, updateInventory)
             .then(res => console.log(res.data));
         }
 
         if (e.nativeEvent.submitter.name === "delete"){
-          axios.delete("http://localhost:5000/"+this.state.idUndelete, inventory)
+          axios.delete("/"+this.state.idUndelete, inventory)
             .then(res => console.log(res.data));
         }
 
         if (e.nativeEvent.submitter.name === "archive"){
-          axios.post("http://localhost:5000/delete/"+this.state.idArchive, archivedSchema)
+          axios.post("/delete/"+this.state.idArchive, archivedSchema)
             .then(res => console.log(res.data));
         }
         if (e.nativeEvent.submitter.name === "undelete"){
-          axios.post("http://localhost:5000/undelete/"+this.state.idUndelete, archivedSchema)
+          axios.post("/undelete/"+this.state.idUndelete, archivedSchema)
             .then(res => console.log(res.data));
         }
         // Need to add recover, and permanent delete
 
-        axios.get("http://localhost:5000")
+        axios.get("/")
         .then(res => this.setState({inventory: res.data}))
     }
 
