@@ -51,7 +51,11 @@ PATCH request that updates the item, based on the given id of the product.
 
 #### /:id - DELETE Request
 DELETE request that permanently deletes the item, based on the given id of the product.
-
+- Request body contains the comment required for deletion
+```
+  { "comment": Enter comment, 
+  }
+```
 
 #### /undelete/:id - POST Request
 POST request that undeletes the item from the item list, and moves it to the regular items section, based on ID.
