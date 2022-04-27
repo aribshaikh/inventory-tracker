@@ -11,7 +11,7 @@ const Inventory = require("./models/inventory");
 
 require('dotenv').config();
 
-const PORT = process.env.port || 5000;
+const PORT = process.env.PORT || 5000;
 const path = require('path');
 const { equal } = require('assert');
 
