@@ -9,44 +9,55 @@ Additional Feature:
 - Comments for Deletion/Undeletion
 
 ## Deployed Link
-if deployed link is not working, feel free to clone the repo and run the project locally.
+https://replit.com/@aribshaikh1/submission
 
-Install react and npm on your device, next.
+## API Docs
 
-Enter the project directory and run the following commands:
+## Routes
 
+#### /items - GET Request
+GET request that requests all the available items in the inventory
+- Request: GET
+- URL: ``` /items/ ```
+- Request Body: none
+- Response body returns a list of all item objects
+
+#### /archived - GET Request
+GET request that requests all 'deleted' items the user has made
+- Request: GET
+- URL: ``` /archived ```
+- Request Body: none
+- Response: Body returns list of all item objects
+
+#### /add - POST Request
+POST request that sends a new items data to the server and saves it in the database
+- Request body contains a user object from the data inputted into the frontend
 ```
-$ npm install
-$ node server.js
+  { "product": Name of Product, 
+    "amount": Number of supply, 
+    "color": Color, 
+    "vendor": Vendor }
 ```
 
-cd to client folder and install the following
-
+#### /:id - PATCH Request
+PATCH request that updates the item, based on the given id of the product.
+- Request body contains a user object from the data inputted into the frontend
 ```
-$ cd client
-$ npm install
-$ npm start
+  { "product": Name of Product, 
+    "amount": Number of supply, 
+    "color": Color, 
+    "vendor": Vendor }
 ```
 
-Open `http://localhost:3000`
-
-**If you node server.js command is giving an error**
-
-code: 'MODULE_NOT_FOUND',
-requireStack: [ '/Users/inventory-tracker/server.js' ]
-
-Run the following steps:
-1. Delete the package-lock.json
-2. In the root directory run: 
+#### /:id - DELETE Request
+DELETE request that permanently deletes the item, based on the given id of the product.
+- Request body contains the comment required for deletion
 ```
-$ npm install
-$ node server.js
+  { "comment": "Enter comment" 
+  }
 ```
-**If the webpage does not open after 'npm start'**
 
-Run the following commands:
+#### /undelete/:id - POST Request
+POST request that undeletes the item from the item list, and moves it to the regular items section, based on ID.
 
-```
-$ export NODE_OPTIONS=--openssl-legacy-provider
-$ npm start
-```
+
