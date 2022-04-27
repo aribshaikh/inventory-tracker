@@ -69,7 +69,7 @@ class Inventory extends Component {
     }
     // Regular inventory
     componentDidMount() {
-      axios.get("/")
+      axios.get("/items")
         .then(res => this.setState({inventory: res.data}))
         axios.get("/archived")
         .then(res => this.setState({archivedInventory: res.data}))
@@ -138,7 +138,7 @@ class Inventory extends Component {
         }
         // Need to add recover, and permanent delete
 
-        axios.get("/")
+        axios.get("/items")
         .then(res => this.setState({inventory: res.data}))
     }
 
