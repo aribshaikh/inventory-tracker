@@ -75,6 +75,11 @@ app.get("/archived",  async (req, res) => {
 
 
 app.post("/add", async (req, res) => {
+
+    if(isNaN(req.body.amount)) {
+      console.log('Invalid input for amount, cannot complete request')
+    }
+    else{ 
     const inventory = new Inventory({
         product: req.body.product,
         amount: Number(req.body.amount),
@@ -107,10 +112,15 @@ app.post("/add", async (req, res) => {
 			res.status(400).send('Bad Request') // 400 for bad request gets sent to client.
 		}
 	}
+}
 })
 
 // Update an item
 app.patch("/:id", async (req, res) => {
+  if(isNaN(req.body.amount)) {
+    console.log('Invalid input for amount, cannot complete request')
+  }
+  else{ 
     const id = req.params.id
     const Item = {
         product: req.body.product,
@@ -154,11 +164,11 @@ app.patch("/:id", async (req, res) => {
                 error: error
             });
         })
+      }
 })
 
 // Permanent Delete
 app.delete("/:id", (req, res) => {
-    console.log('Here is comment')
     Inventory.deleteOne({ _id: req.params.id })
     .then(data => {
         if (data.n == 0) {
@@ -189,7 +199,7 @@ app.post("/delete/:id", function(req, res){
       if (err) {
         console.log(err);
       } else {
-        console.log("Successfully moved product to trash.");
+        console.log("Successfully deleted permanently.");
         res.redirect("/");
       }
     });
@@ -197,10 +207,6 @@ app.post("/delete/:id", function(req, res){
 
   // Archive/Delete
 app.post("/undelete/:id", function(req, res){
-    console.log(req.params.id)
-    console.log('Here is comment')
-    console.log(req.body.comment)
-    console.log('We in the right place')
     Inventory.findOneAndUpdate({_id: req.params.id},  {$set: {
       archived: {
         delete: false, 
@@ -211,7 +217,7 @@ app.post("/undelete/:id", function(req, res){
       if (err) {
         console.log(err);
       } else {
-        console.log("Successfully moved product to trash.");
+        console.log("Successfully undeleted");
         res.redirect("/");
       }
     });
