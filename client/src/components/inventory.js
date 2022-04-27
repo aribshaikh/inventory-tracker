@@ -31,9 +31,30 @@ const columns = [
   { field: 'vendor', headerName: 'Vendor', width: 150 },
 ];
 
+const checkKeysUnderObject = (obj, result) => {
+  for (let key in obj) {
+    if (key) {
+      result.push(key + " : " + obj[key]);
+    }
+  }
+};
+
 const deletedColumns = [
   { field: '_id', headerName: 'id', width: 200 },
-  { field: 'comment', headerName: 'Comment', width: 150 },
+  { field: 'archived', headerName: 'Comment', width: 150,
+
+  valueGetter: (params) => {
+    console.log({ params });
+    let result = [];
+    if (params.row.archived.comment) {
+      checkKeysUnderObject(params.row.archived.comment, result);
+    } else {
+      result = ["Unknown"];
+    }
+    return params.row.archived.comment;
+  }
+
+  },
 
   { field: 'product', headerName: 'Product', width: 150 },
   { field: 'amount', headerName: 'Amount', width: 150 },
