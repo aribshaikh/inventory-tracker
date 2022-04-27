@@ -386,7 +386,7 @@ class Inventory extends Component {
               </div>
               <div>
                 <h2> Delete Item</h2>
-                <h4> Select the item id that needs to be undeleted below</h4>
+                <h4> Select the item id that needs to be undeleted/permanently deleted below</h4>
                 <select name = "idUndelete" onChange={this.onDropdownSelected}>
                 <option> - </option>
                 {this.state.archivedInventory.map((item, i) => {
