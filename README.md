@@ -53,7 +53,7 @@ PATCH request that updates the item, based on the given id of the product.
 DELETE request that permanently deletes the item, based on the given id of the product.
 - Request body contains the comment required for deletion
 ```
-  { "comment": Enter comment, 
+  { "comment": "Enter comment" 
   }
 ```
 
